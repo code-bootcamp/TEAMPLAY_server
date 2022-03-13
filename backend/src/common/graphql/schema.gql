@@ -44,6 +44,5 @@ input CreateUserInput {
   personal: String!
   gender: GENDER_ENUM!
   intro: String
-  createdAt: DateTime!
   password: String!
 }
