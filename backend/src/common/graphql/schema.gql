@@ -1,0 +1,49 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  email: String!
+  name: String!
+  phone: String!
+  nickname: String!
+  personal: String!
+  gender: GENDER_ENUM!
+  intro: String
+  createdAt: DateTime!
+  deletedAt: DateTime
+}
+
+enum GENDER_ENUM {
+  MAN
+  WOMAN
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  hello: String!
+}
+
+type Mutation {
+  tokenPhone(phone: String!): String!
+  authPhone(phone: String!, token: String!): Boolean!
+  tokenEmail(email: String!): String!
+  authEmail(email: String!, token: String!): Boolean!
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+  phone: String!
+  nickname: String!
+  personal: String!
+  gender: GENDER_ENUM!
+  intro: String
+  password: String!
+}
