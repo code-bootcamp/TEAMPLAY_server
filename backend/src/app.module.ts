@@ -22,7 +22,7 @@ import { AppService } from './app.service';
       port: 3306,
       username: 'root',
       password: 'root',
-      database: 'planT',
+      database: 'TEAMPLE',
       entities: [__dirname + '/apis/**/*.entity.*'],
       synchronize: true,
       logging: true,

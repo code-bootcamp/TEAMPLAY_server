@@ -33,6 +33,7 @@ type Mutation {
   tokenPhone(phone: String!): String!
   authPhone(phone: String!, token: String!): Boolean!
   tokenEmail(email: String!): String!
+  authEmail(email: String!, token: String!): Boolean!
   createUser(createUserInput: CreateUserInput!): User!
 }
 

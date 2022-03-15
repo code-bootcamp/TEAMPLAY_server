@@ -9,14 +9,14 @@ import {
 
 @Entity()
 @ObjectType()
-export class TokenPhone {
+export class TokenEmail {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String)
   id!: string;
 
   @Column({ unique: true })
   @Field(() => String)
-  phone!: string;
+  email!: string;
 
   @Column()
   @Field(() => String)
@@ -32,5 +32,5 @@ export class TokenPhone {
 
   @UpdateDateColumn()
   @Field(() => Date)
-  updatedAt: Date;
+  updatedAt!: Date;
 }

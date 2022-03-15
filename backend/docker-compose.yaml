@@ -16,8 +16,9 @@ services:
     platform: linux/x86_64
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: 'planT'
+      MYSQL_DATABASE: 'TEAMPLE'
       MYSQL_ROOT_PASSWORD: 'root'
+      TZ: 'Asia/Seoul'
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci

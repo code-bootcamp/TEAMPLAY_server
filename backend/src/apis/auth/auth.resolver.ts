@@ -20,13 +20,24 @@ export class AuthResolver {
 
   @Mutation(() => Boolean)
   async authPhone(@Args('phone') phone: string, @Args('token') token: string) {
-    return await this.tokenService.checkToken({ phone, token });
+    return await this.tokenService.checkTokenPhone({ phone, token });
   }
 
   @Mutation(() => String)
   async tokenEmail(@Args('email') email: string) {
-    const mytoken = this.tokenService.getToken(6);
+    if (this.tokenService.checkEmail({ email })) {
+      const mytoken = this.tokenService.getToken(6);
+      const template = this.tokenService.getTemplateToken({ mytoken });
+      // await this.tokenService.sendEmail({ email, template });
+      await this.tokenService.createTokenEmail({ email, mytoken });
+      return `${email}으로 인증번호가 전송되었습니다. ${mytoken}`;
+    } else {
+      throw new UnauthorizedException('이메일을 확인해주세요');
+    }
+  }
 
-    return 'a';
+  @Mutation(() => Boolean)
+  async authEmail(@Args('email') email: string, @Args('token') token: string) {
+    return await this.tokenService.checkTokenEmail({ email, token });
   }
 }

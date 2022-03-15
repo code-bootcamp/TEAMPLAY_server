@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { TokenEmail } from '../auth/entities/tokenEmail.entity';
 import { TokenPhone } from '../auth/entities/tokenPhone.entity';
 import { User } from './entities/user.entity';
 
@@ -15,6 +16,8 @@ export class UserService {
     private readonly userRepository: Repository<User>,
     @InjectRepository(TokenPhone)
     private readonly tokenPhoneRepository: Repository<TokenPhone>,
+    @InjectRepository(TokenEmail)
+    private readonly tokenEmailRepository: Repository<TokenEmail>,
   ) {}
 
   async create({ createUserInput }) {
@@ -64,6 +67,15 @@ export class UserService {
     });
     if (!myphone || !myphone.isAuth) {
       throw new UnauthorizedException('핸드폰 번호를 인증해주세요');
+    }
+  }
+
+  async checkEmail({ createUserInput }) {
+    const myemail = await this.tokenEmailRepository.findOne({
+      email: createUserInput.email,
+    });
+    if (!myemail || !myemail.isAuth) {
+      throw new UnauthorizedException('이메일을 인증해주세요');
     }
   }
 }
