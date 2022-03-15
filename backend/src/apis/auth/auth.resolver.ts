@@ -14,7 +14,7 @@ export class AuthResolver {
       await this.tokenService.createTokenPhone({ phone, mytoken });
       return `${phone}으로 인증번호가 전송되었습니다. ${mytoken}`;
     } else {
-      throw new UnauthorizedException('핸드폰 번호를 확인해주세요!');
+      throw new UnauthorizedException('핸드폰 번호를 확인해주세요');
     }
   }
 
@@ -32,7 +32,7 @@ export class AuthResolver {
       await this.tokenService.createTokenEmail({ email, mytoken });
       return `${email}으로 인증번호가 전송되었습니다. ${mytoken}`;
     } else {
-      throw new UnauthorizedException('이메일을 확인해주세요!');
+      throw new UnauthorizedException('이메일을 확인해주세요');
     }
   }
 
